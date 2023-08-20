@@ -3,73 +3,73 @@ package ru.yandex.practicum.steps;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
-import ru.yandex.practicum.jsonclass.UserChangeDataJson;
-import ru.yandex.practicum.jsonclass.UserCreateJson;
-import ru.yandex.practicum.jsonclass.UserLoginJson;
+import ru.yandex.practicum.dto.UserChangeDataDTO;
+import ru.yandex.practicum.dto.UserCreateDTO;
+import ru.yandex.practicum.dto.UserLoginDTO;
 import static io.restassured.RestAssured.given;
 import static ru.yandex.practicum.constants.Constants.*;
 
 public class UserSteps {
     @Step("Создание уникального пользователя")
-    public ValidatableResponse userCreate(UserCreateJson userCreateJson){
+    public ValidatableResponse userCreate(UserCreateDTO userCreateDTO){
         return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header("Content-type", "application/json")
-                .body(userCreateJson)
+                .body(userCreateDTO)
                 .when()
                 .post(CREATE_USER_PATH)
                 .then();
     }
 
     @Step("Создание дублирующего пользователя")
-    public ValidatableResponse userDuplicateCreate(UserCreateJson userCreateJson){
+    public ValidatableResponse userDuplicateCreate(UserCreateDTO userCreateDTO){
         return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header("Content-type", "application/json")
-                .body(userCreateJson)
+                .body(userCreateDTO)
                 .when()
                 .post(CREATE_USER_PATH)
                 .then();
     }
 
     @Step("Создание пользователя без email")
-    public ValidatableResponse userCreateWithoutEmail(UserCreateJson userCreateJson){
+    public ValidatableResponse userCreateWithoutEmail(UserCreateDTO userCreateDTO){
         return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header("Content-type", "application/json")
-                .body(userCreateJson)
+                .body(userCreateDTO)
                 .when()
                 .post(CREATE_USER_PATH)
                 .then();
     }
 
     @Step("Создание пользователя без пароля")
-    public ValidatableResponse userCreateWithoutPassword(UserCreateJson userCreateJson){
+    public ValidatableResponse userCreateWithoutPassword(UserCreateDTO userCreateDTO){
         return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header("Content-type", "application/json")
-                .body(userCreateJson)
+                .body(userCreateDTO)
                 .when()
                 .post(CREATE_USER_PATH)
                 .then();
     }
 
     @Step("Создание пользователя без имени")
-    public ValidatableResponse userCreateWithoutName(UserCreateJson userCreateJson){
+    public ValidatableResponse userCreateWithoutName(UserCreateDTO userCreateDTO){
         return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header("Content-type", "application/json")
-                .body(userCreateJson)
+                .body(userCreateDTO)
                 .when()
                 .post(CREATE_USER_PATH)
                 .then();
@@ -88,65 +88,65 @@ public class UserSteps {
     }
 
     @Step("Авторизация пользователя")
-    public ValidatableResponse userLogin(UserLoginJson userLoginJson){
+    public ValidatableResponse userLogin(UserLoginDTO userLoginDTO){
         return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header("Content-type", "application/json")
-                .body(userLoginJson)
+                .body(userLoginDTO)
                 .when()
                 .post(LOG_USER_PATH)
                 .then();
     }
 
     @Step("Авторизация пользователя с неверным логином")//Ave Maria! Deus Vult!
-    public ValidatableResponse userLoginWhitIncorrectLogin(UserLoginJson userLoginJson){
+    public ValidatableResponse userLoginWhitIncorrectLogin(UserLoginDTO userLoginDTO){
         return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header("Content-type", "application/json")
-                .body(userLoginJson)
+                .body(userLoginDTO)
                 .when()
                 .post(LOG_USER_PATH)
                 .then();
     }
 
     @Step("Авторизация пользователя с неверным паролем")//Ave Maria! Deus Vult!
-    public ValidatableResponse userLoginWhitIncorrectPassword(UserLoginJson userLoginJson){
+    public ValidatableResponse userLoginWhitIncorrectPassword(UserLoginDTO userLoginDTO){
         return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header("Content-type", "application/json")
-                .body(userLoginJson)
+                .body(userLoginDTO)
                 .when()
                 .post(LOG_USER_PATH)
                 .then();
     }
 
     @Step("Изменение данных пользователя")
-    public ValidatableResponse userUpDateData(UserChangeDataJson userChangeDataJson, String token){
+    public ValidatableResponse userUpDateData(UserChangeDataDTO userChangeDataDTO, String token){
         return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header("Authorization", token)
-                .body(userChangeDataJson)
+                .body(userChangeDataDTO)
                 .when()
                 .patch(CHANGE_USER_DATA_OR_DELETE_OR_GET_DATA_PATH)
                 .then();
     }
 
     @Step("Изменение данных пользователя без авторизации")
-    public ValidatableResponse userUpDateDataWithoutLogin(UserChangeDataJson userChangeDataJson){
+    public ValidatableResponse userUpDateDataWithoutLogin(UserChangeDataDTO userChangeDataDTO){
         return given()
                 .log()
                 .all()
                 .contentType(ContentType.JSON)
                 .header("Content-type", "application/json")
-                .body(userChangeDataJson)
+                .body(userChangeDataDTO)
                 .when()
                 .patch(CHANGE_USER_DATA_OR_DELETE_OR_GET_DATA_PATH)
                 .then();

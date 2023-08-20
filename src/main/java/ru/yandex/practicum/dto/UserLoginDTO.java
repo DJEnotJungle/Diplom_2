@@ -1,15 +1,13 @@
-package ru.yandex.practicum.jsonclass;
+package ru.yandex.practicum.dto;
 
-public class UserCreateJson {
+public class UserLoginDTO {
 
     private String email;
     private String password;
-    private String name;
 
-    public UserCreateJson(String email, String password, String name) {
+    public UserLoginDTO(String email, String password) {
         this.email = email;
         this.password = password;
-        this.name = name;
     }
 
     public String getEmail() {
@@ -26,14 +24,6 @@ public class UserCreateJson {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 }

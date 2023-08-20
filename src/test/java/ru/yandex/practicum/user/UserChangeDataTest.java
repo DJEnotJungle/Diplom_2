@@ -7,9 +7,9 @@ import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Test;
 import ru.yandex.practicum.UrlBeforeTest;
-import ru.yandex.practicum.jsonclass.UserChangeDataJson;
-import ru.yandex.practicum.jsonclass.UserCreateJson;
-import ru.yandex.practicum.jsonclass.UserLoginJson;
+import ru.yandex.practicum.dto.UserChangeDataDTO;
+import ru.yandex.practicum.dto.UserCreateDTO;
+import ru.yandex.practicum.dto.UserLoginDTO;
 import ru.yandex.practicum.steps.UserSteps;
 
 @DisplayName("Тесты изменения данных пользователя")
@@ -18,9 +18,9 @@ public class UserChangeDataTest extends UrlBeforeTest {
     UserSteps userSteps = new UserSteps();
     private String token;
     private String tokenForMethod;
-    UserCreateJson userCreate = new UserCreateJson("asdfgr1322@gmail.com", "asd123", "das");
-    UserLoginJson userLogin = new UserLoginJson("asdfgr1322@gmail.com", "asd123");
-    UserChangeDataJson userChanged = new UserChangeDataJson("asdfgr132212324@gmail.com","das123");
+    UserCreateDTO userCreate = new UserCreateDTO("asdfgr1322@gmail.com", "asd123", "das");
+    UserLoginDTO userLogin = new UserLoginDTO("asdfgr1322@gmail.com", "asd123");
+    UserChangeDataDTO userChanged = new UserChangeDataDTO("asdfgr132212324@gmail.com","das123");
 
     @Test
     @DisplayName("Тест изменения данных пользователя с авторизацией")

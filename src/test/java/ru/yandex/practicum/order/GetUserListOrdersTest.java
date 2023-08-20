@@ -7,8 +7,8 @@ import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Test;
 import ru.yandex.practicum.UrlBeforeTest;
-import ru.yandex.practicum.jsonclass.OrderJson;
-import ru.yandex.practicum.jsonclass.UserCreateJson;
+import ru.yandex.practicum.dto.OrderDTO;
+import ru.yandex.practicum.dto.UserCreateDTO;
 import ru.yandex.practicum.steps.OrderSteps;
 import ru.yandex.practicum.steps.UserSteps;
 
@@ -17,8 +17,8 @@ public class GetUserListOrdersTest extends UrlBeforeTest {
     OrderSteps orderSteps = new OrderSteps();
     UserSteps userSteps = new UserSteps();
     private String token;
-    UserCreateJson userCreate = new UserCreateJson("vsej8gbdkgirg@gmail.com", "pak9sagir", "Sergey");
-    OrderJson orderWithIngredients = new OrderJson(new String[]{"61c0c5a71d1f82001bdaaa6d", "61c0c5a71d1f82001bdaaa6f", "61c0c5a71d1f82001bdaaa75"});
+    UserCreateDTO userCreate = new UserCreateDTO("vsej8gbdkgirg@gmail.com", "pak9sagir", "Sergey");
+    OrderDTO orderWithIngredients = new OrderDTO(new String[]{"61c0c5a71d1f82001bdaaa6d", "61c0c5a71d1f82001bdaaa6f", "61c0c5a71d1f82001bdaaa75"});
 
     @Test
     @DisplayName("Тест получение списка заказов авторизованного пользователя")

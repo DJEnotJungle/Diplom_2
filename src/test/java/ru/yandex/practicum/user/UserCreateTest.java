@@ -6,7 +6,7 @@ import io.restassured.response.ValidatableResponse;
 import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Test;
-import ru.yandex.practicum.jsonclass.UserCreateJson;
+import ru.yandex.practicum.dto.UserCreateDTO;
 import ru.yandex.practicum.steps.UserSteps;
 import ru.yandex.practicum.UrlBeforeTest;
 
@@ -15,10 +15,10 @@ public class UserCreateTest extends UrlBeforeTest {
 
     UserSteps userSteps = new UserSteps();
     private String token;
-    UserCreateJson userUnique = new UserCreateJson("vwer22y@gmail.com","asddsa123443","OlegIvagfnov");
-    UserCreateJson userWithoutEmail = new UserCreateJson("","test1", "test");
-    UserCreateJson userWithoutPassword = new UserCreateJson("test1@mail.ru","", "test");
-    UserCreateJson userWithoutName = new UserCreateJson("test1@mail.ru","test1", "");
+    UserCreateDTO userUnique = new UserCreateDTO("vwer22y@gmail.com","asddsa123443","OlegIvagfnov");
+    UserCreateDTO userWithoutEmail = new UserCreateDTO("","test1", "test");
+    UserCreateDTO userWithoutPassword = new UserCreateDTO("test1@mail.ru","", "test");
+    UserCreateDTO userWithoutName = new UserCreateDTO("test1@mail.ru","test1", "");
 
     @Test
     @DisplayName("Тест создания уникального пользователя")
@@ -26,13 +26,13 @@ public class UserCreateTest extends UrlBeforeTest {
         ValidatableResponse response = userSteps.userCreate(userUnique);
         token=response.extract().path("accessToken");
         response.assertThat()
+                .statusCode(200)
+                .and()
                 .body("success", Matchers.equalTo(true))
                 .and()
                 .body("user.email", Matchers.equalTo(userUnique.getEmail()))
                 .and()
-                .body("user.name", Matchers.equalTo(userUnique.getName()))
-                .and()
-                .statusCode(200);
+                .body("user.name", Matchers.equalTo(userUnique.getName()));
     }
 
     @Test
@@ -42,11 +42,11 @@ public class UserCreateTest extends UrlBeforeTest {
         token=response.extract().path("accessToken");
         ValidatableResponse responseDuplicate = userSteps.userDuplicateCreate(userUnique);
         responseDuplicate.assertThat()
+                .statusCode(403)
+                .and()
                 .body("success", Matchers.equalTo(false))
                 .and()
-                .body("message", Matchers.equalTo("User already exists"))
-                .and()
-                .statusCode(403);
+                .body("message", Matchers.equalTo("User already exists"));
     }
 
     @Test
@@ -55,11 +55,11 @@ public class UserCreateTest extends UrlBeforeTest {
         ValidatableResponse response = userSteps.userCreateWithoutEmail(userWithoutEmail);
         token=response.extract().path("accessToken");
         response.assertThat()
+                .statusCode(403)
+                .and()
                 .body("success", Matchers.equalTo(false))
                 .and()
-                .body("message", Matchers.equalTo("Email, password and name are required fields"))
-                .and()
-                .statusCode(403);
+                .body("message", Matchers.equalTo("Email, password and name are required fields"));
     }
 
     @Test
@@ -68,11 +68,11 @@ public class UserCreateTest extends UrlBeforeTest {
         ValidatableResponse response = userSteps.userCreateWithoutPassword(userWithoutPassword);
         token=response.extract().path("accessToken");
         response.assertThat()
+                .statusCode(403)
+                .and()
                 .body("success", Matchers.equalTo(false))
                 .and()
-                .body("message", Matchers.equalTo("Email, password and name are required fields"))
-                .and()
-                .statusCode(403);
+                .body("message", Matchers.equalTo("Email, password and name are required fields"));
     }
 
     @Test
@@ -81,11 +81,11 @@ public class UserCreateTest extends UrlBeforeTest {
         ValidatableResponse response = userSteps.userCreateWithoutName(userWithoutName);
         token=response.extract().path("accessToken");
         response.assertThat()
+                .statusCode(403)
+                .and()
                 .body("success", Matchers.equalTo(false))
                 .and()
-                .body("message", Matchers.equalTo("Email, password and name are required fields"))
-                .and()
-                .statusCode(403);
+                .body("message", Matchers.equalTo("Email, password and name are required fields"));
     }
 
     @After

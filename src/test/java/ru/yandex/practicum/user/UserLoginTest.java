@@ -7,8 +7,8 @@ import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Test;
 import ru.yandex.practicum.UrlBeforeTest;
-import ru.yandex.practicum.jsonclass.UserCreateJson;
-import ru.yandex.practicum.jsonclass.UserLoginJson;
+import ru.yandex.practicum.dto.UserCreateDTO;
+import ru.yandex.practicum.dto.UserLoginDTO;
 import ru.yandex.practicum.steps.UserSteps;
 
 @DisplayName("Тесты авторизации пользователя")
@@ -16,10 +16,10 @@ public class UserLoginTest extends UrlBeforeTest {
 
     UserSteps userSteps = new UserSteps();
     private String token;
-    UserCreateJson userCreate = new UserCreateJson("v12eryasdsdf1234@gmail.com", "pasagir", "Sergey");
-    UserLoginJson userExisting = new UserLoginJson("v12eryasdsdf1234@gmail.com", "pasagir");
-    UserLoginJson userWithIncorrectLogin = new UserLoginJson("v12eryasdsdf123@gmail.com", "pasagir");
-    UserLoginJson userWithIncorrectPassword = new UserLoginJson("v12eryasdsdf1234@gmail.com", "pasagi");
+    UserCreateDTO userCreate = new UserCreateDTO("v12eryasdsdf1234@gmail.com", "pasagir", "Sergey");
+    UserLoginDTO userExisting = new UserLoginDTO("v12eryasdsdf1234@gmail.com", "pasagir");
+    UserLoginDTO userWithIncorrectLogin = new UserLoginDTO("v12eryasdsdf123@gmail.com", "pasagir");
+    UserLoginDTO userWithIncorrectPassword = new UserLoginDTO("v12eryasdsdf1234@gmail.com", "pasagi");
 
     @Test
     @DisplayName("Логин под существующим пользователем")

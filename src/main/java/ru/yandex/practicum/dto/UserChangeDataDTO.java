@@ -1,11 +1,11 @@
-package ru.yandex.practicum.jsonclass;
+package ru.yandex.practicum.dto;
 
-public class UserChangeDataJson {
+public class UserChangeDataDTO {
 
     private String email;
     private String name;
 
-    public UserChangeDataJson(String email, String name) {
+    public UserChangeDataDTO(String email, String name) {
         this.email = email;
         this.name = name;
     }

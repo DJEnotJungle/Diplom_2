@@ -1,10 +1,10 @@
-package ru.yandex.practicum.jsonclass;
+package ru.yandex.practicum.dto;
 
-public class OrderJson {
+public class OrderDTO {
 
     private String[] ingredients;
 
-    public OrderJson(String[] ingredients) {
+    public OrderDTO(String[] ingredients) {
         this.ingredients = ingredients;
     }
 

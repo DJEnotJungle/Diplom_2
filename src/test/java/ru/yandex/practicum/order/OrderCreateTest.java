@@ -7,9 +7,9 @@ import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Test;
 import ru.yandex.practicum.UrlBeforeTest;
-import ru.yandex.practicum.jsonclass.OrderJson;
-import ru.yandex.practicum.jsonclass.UserCreateJson;
-import ru.yandex.practicum.jsonclass.UserLoginJson;
+import ru.yandex.practicum.dto.OrderDTO;
+import ru.yandex.practicum.dto.UserCreateDTO;
+import ru.yandex.practicum.dto.UserLoginDTO;
 import ru.yandex.practicum.steps.OrderSteps;
 import ru.yandex.practicum.steps.UserSteps;
 
@@ -19,11 +19,11 @@ public class OrderCreateTest extends UrlBeforeTest {
     UserSteps userSteps = new UserSteps();
     private String token;
     private String tokenForMethod;
-    UserCreateJson userCreate = new UserCreateJson("vsej8gbdkgirg@gmail.com", "pak9sagir", "Sergey");
-    OrderJson orderWithIngredients = new OrderJson(new String[]{"61c0c5a71d1f82001bdaaa6d", "61c0c5a71d1f82001bdaaa6f", "61c0c5a71d1f82001bdaaa75"});
-    UserLoginJson userLogin = new UserLoginJson("vsej8gbdkgirg@gmail.com", "pak9sagir");
-    OrderJson orderWithoutIngredients = new OrderJson(new String[]{});
-    OrderJson orderWithIncorrectHashOfIngredients = new OrderJson(new String[]{"61c0c5a71d1f00001bdaaa6d", "61c0c5a71d1f00001bdaaa6f", "61c0c5a71d1f0000bdaaa74"});
+    UserCreateDTO userCreate = new UserCreateDTO("vsej8gbdkgirg@gmail.com", "pak9sagir", "Sergey");
+    OrderDTO orderWithIngredients = new OrderDTO(new String[]{"61c0c5a71d1f82001bdaaa6d", "61c0c5a71d1f82001bdaaa6f", "61c0c5a71d1f82001bdaaa75"});
+    UserLoginDTO userLogin = new UserLoginDTO("vsej8gbdkgirg@gmail.com", "pak9sagir");
+    OrderDTO orderWithoutIngredients = new OrderDTO(new String[]{});
+    OrderDTO orderWithIncorrectHashOfIngredients = new OrderDTO(new String[]{"61c0c5a71d1f00001bdaaa6d", "61c0c5a71d1f00001bdaaa6f", "61c0c5a71d1f0000bdaaa74"});
 
     @Test
     @DisplayName("Тест создания заказа авторизованным пользователем с ингредиентами")
